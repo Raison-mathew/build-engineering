@@ -4,3 +4,32 @@
   padding: 2rem;
   text-align: center;
 }
+
+.dashboard {
+  padding: 1rem 0;
+}
+
+.noteRow {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.sprintNote {
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.legend :global(.cds--tag) {
+  margin: 0 0.25rem 0.25rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+}
+
+.activityLog {
+  background: #b7e4c7;
+  padding: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
