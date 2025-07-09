@@ -6,10 +6,10 @@ import InfoTable from './components/InfoTable'
 const scheduleHeaders = [
   { key: "schedule", header: "Schedule" },
   { key: "plan", header: "Plan" },
-  { key: "sprint1", header: "Sprint 1" },
-  { key: "sprint2", header: "Sprint 2" },
-  { key: "sprint3", header: "Sprint 3" },
-  { key: "frt", header: "Final Regression Test" },
+  { key: "sprint1", header: "Sprint1" },
+  { key: "sprint2", header: "Sprint2" },
+  { key: "sprint3", header: "Sprint3" },
+  { key: "frt", header: "Final Regression Test" },
   { key: "gm", header: "GM" },
   { key: "ega", header: "eGA" },
 ];
@@ -44,10 +44,11 @@ function App() {
 
   return (
     <>
-      {/* <h1>Welcome to Build Engineering</h1>
-      <Button>Explain</Button> */}
       <AppHeader></AppHeader>
-      <InfoTable headers={scheduleHeaders} rows={scheduleRows}></InfoTable>
+      
+      <div style={{padding: '2rem'}}>
+        <InfoTable headers={scheduleHeaders} rows={scheduleRows}></InfoTable>
+      </div> 
     </>
   )
 }
