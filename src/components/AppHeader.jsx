@@ -1,9 +1,7 @@
 import { Header, 
         HeaderName, 
         HeaderNavigation, 
-        HeaderMenuItem, 
-        HeaderGlobalBar, 
-        HeaderGlobalAction } from '@carbon/react';
+        HeaderMenuItem } from '@carbon/react';
 
 
 const AppHeader = () => {
