@@ -78,8 +78,6 @@ function App() {
 
   return (
     <>
-      {/* <h1>Welcome to Build Engineering</h1>
-      <Button>Explain</Button> */}
       <AppHeader></AppHeader>
       
       <div style={{padding: '2rem'}}>

@@ -1,8 +1,6 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
 .dashboard {
@@ -32,4 +30,9 @@
   padding: 0.5rem;
   font-weight: 600;
   text-align: center;
+}
+
+body {
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
