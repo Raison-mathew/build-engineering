@@ -3,6 +3,8 @@ import { Button } from '@carbon/react'
 import AppHeader from './components/AppHeader'
 import InfoTable from './components/InfoTable'
 import AutoTargetTable from './components/AutoTarget';
+import BuildStatusTable from './components/BuildStatusTable';
+import BuildEngineeringDashboard from './components/BuildEngineeringDashboard';
 
 const scheduleHeaders = [
   { key: "schedule", header: "Schedule" },
@@ -43,47 +45,20 @@ const scheduleRows = [
   },
 ];
 
-const buildStatusHeaders = [
-  { key: "schedule", header: "Schedule" },
-  { key: "last", header: "Last Committed" },
-  { key: "ready", header: "Ready to Commit" },
-  { key: "bvt", header: "BVT Testing" },
-  { key: "manual", header: "Manual" },
-  { key: "auto", header: "Auto" },
-];
-
-const buildStatusRows = [
-  {
-    id: "905status",
-    schedule: "905.24",
-    last: "f5242521.01",
-    ready: "f5242521.02",
-    bvt: "f5242521.03",
-    manual: "commit-905", // custom cell renderer → Button
-    auto: "OFF", // Tag renderer
-  },
-  {
-    id: "855status",
-    schedule: "855.28",
-    last: "f5242521.01",
-    ready: "f5242521.02",
-    bvt: "f5242521.03",
-    manual: "commit-855",
-    auto: "ON",
-  },
-];
-
 function App() {
   
 
   return (
     <>
       <AppHeader></AppHeader>
+      <BuildEngineeringDashboard></BuildEngineeringDashboard>
       
       <div style={{padding: '2rem'}}>
         <InfoTable headers={scheduleHeaders} rows={scheduleRows}></InfoTable>
-         <InfoTable headers={buildStatusHeaders} rows={buildStatusRows}></InfoTable>
+         {/* <InfoTable headers={buildStatusHeaders} rows={buildStatusRows}></InfoTable> */}
+        <BuildStatusTable></BuildStatusTable>
          <AutoTargetTable></AutoTargetTable>
+
       </div> 
     </>
   )

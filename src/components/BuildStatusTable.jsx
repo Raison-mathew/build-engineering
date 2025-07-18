@@ -17,42 +17,46 @@ import {
 } from "@carbon/react";
 import { Play, Renew, Calendar } from "@carbon/icons-react";
 
-const initialRows = [
+const initialBuildData = [
   {
-    id: 1,
-    reportId: 905.24,
-    targeted: 3,
-    readyToTarget: 2,
+    id: 905.24,
     status: "OFF",
+    builds: [
+      { label: "Last Committed", value: "f5242521.01" },
+      { label: "Ready to Commit", value: "f5242521.02" },
+      { label: "BVT Testing", value: "f5242521.03" },
+    ],
     scheduledTime: null,
   },
   {
-    id: 2,
-    reportId: 855.28,
-    targeted: 5,
-    readyToTarget: 7,
+    id: 855.28,
     status: "ON",
+    builds: [
+      { label: "Last Committed", value: "f5242521.01" },
+      { label: "Ready to Commit", value: "f5242521.02" },
+      { label: "BVT Testing", value: "f5242521.03" },
+    ],
     scheduledTime: null,
   },
 ];
 
-const AutoTargetTable = () => {
-  const [rows, setRows] = useState(initialRows);
+const BuildStatusTable = () => {
+  const [buildData, setBuildData] = useState(initialBuildData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRowId, setSelectedRowId] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
 
   const openScheduleModal = (rowId) => {
+    const row = buildData.find((r) => r.id === rowId);
     setSelectedRowId(rowId);
-    const existing = rows.find((r) => r.id === rowId)?.scheduledTime || {};
-    setSelectedDate(existing.date || "");
-    setSelectedTime(existing.time || "");
+    setSelectedDate(row?.scheduledTime?.date || "");
+    setSelectedTime(row?.scheduledTime?.time || "");
     setIsModalOpen(true);
   };
 
   const handleScheduleSave = () => {
-    const updatedRows = rows.map((row) =>
+    const updated = buildData.map((row) =>
       row.id === selectedRowId
         ? {
             ...row,
@@ -63,99 +67,87 @@ const AutoTargetTable = () => {
           }
         : row
     );
-    setRows(updatedRows);
+    setBuildData(updated);
     setIsModalOpen(false);
   };
 
   return (
     <div className="bx--grid" style={{ maxWidth: "1000px", margin: "auto" }}>
-      <h4>Auto Target - Status: OFF</h4>
+      <h4>Build Status Table</h4>
 
       <DataTable rows={[]} headers={[]} isSortable={false}>
         {() => (
           <Table>
             <TableHead>
               <TableRow>
-                <TableHeader colSpan={2}>Targeting Report</TableHeader>
+                <TableHeader colSpan={1}> </TableHeader>
+                <TableHeader colSpan={2}>Build Status</TableHeader>
                 <TableHeader>Manual</TableHeader>
-                <TableHeader>Schedule (Auto)</TableHeader>
+                <TableHeader>Auto</TableHeader>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {buildData.map((row) => (
                 <React.Fragment key={row.id}>
                   <TableRow>
-                    <TableCell
-                      colSpan={2}
-                      style={{ backgroundColor: "#e3f2fd" }}
-                    >
-                      {row.reportId}
+                    <TableCell rowSpan={3} style={{ backgroundColor: "#e3f2fd" }}>
+                      {row.id}
                     </TableCell>
-                    <TableCell rowSpan={2}>
+                    <TableCell>{row.builds[0].label}</TableCell>
+                    <TableCell>{row.builds[0].value}</TableCell>
+                    <TableCell rowSpan={3}>
                       <Button
                         renderIcon={Play}
-                        size="sm"
                         kind="tertiary"
-                        iconDescription="Kick off"
+                        size="sm"
+                        iconDescription="Commit"
                       >
-                        Kick off
+                        Commit
                       </Button>
                     </TableCell>
-                    <TableCell rowSpan={2}>
-                      {row.scheduledTime ? (
-                        <>
-                          <div>
-                            <strong>
-                              {row.scheduledTime.date} {row.scheduledTime.time}
-                            </strong>
-                          </div>
-                          <Button
-                            size="sm"
-                            kind="ghost"
-                            renderIcon={Calendar}
-                            onClick={() => openScheduleModal(row.id)}
-                          >
-                            Update
-                          </Button>
-                        </>
-                      ) : (
-                        <>
-                          <div>Status: {row.status}</div>
-                          <Button
-                            size="sm"
-                            kind="ghost"
-                            renderIcon={Calendar}
-                            onClick={() => openScheduleModal(row.id)}
-                          >
-                            Schedule
-                          </Button>
-                        </>
+                    <TableCell rowSpan={3}>
+                      <div>Status: {row.status}</div>
+                      {row.scheduledTime && (
+                        <div style={{ marginTop: "0.5rem" }}>
+                          <strong>
+                            {row.scheduledTime.date} {row.scheduledTime.time}
+                          </strong>
+                        </div>
                       )}
+                      <Button
+                        size="sm"
+                        kind="ghost"
+                        renderIcon={Calendar}
+                        onClick={() => openScheduleModal(row.id)}
+                        style={{ marginTop: "0.5rem" }}
+                      >
+                        {row.scheduledTime ? "Update" : "Schedule"}
+                      </Button>
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Targeted</TableCell>
-                    <TableCell>{row.targeted}</TableCell>
+                    <TableCell>{row.builds[1].label}</TableCell>
+                    <TableCell>{row.builds[1].value}</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Ready to Target</TableCell>
-                    <TableCell>{row.readyToTarget}</TableCell>
-                    <TableCell />
-                    <TableCell>
-                      {row.id === 2 && (
-                        <Button
-                          renderIcon={Renew}
-                          size="sm"
-                          kind="ghost"
-                          iconDescription="Refresh"
-                        >
-                          Refresh
-                        </Button>
-                      )}
-                    </TableCell>
+                    <TableCell>{row.builds[2].label}</TableCell>
+                    <TableCell>{row.builds[2].value}</TableCell>
                   </TableRow>
                 </React.Fragment>
               ))}
+              <TableRow>
+                <TableCell colSpan={4} />
+                <TableCell>
+                  <Button
+                    renderIcon={Renew}
+                    kind="ghost"
+                    size="sm"
+                    iconDescription="Refresh"
+                  >
+                    Refresh
+                  </Button>
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         )}
@@ -164,16 +156,16 @@ const AutoTargetTable = () => {
       {/* Schedule Modal */}
       <Modal
         open={isModalOpen}
-        modalHeading="Schedule Auto Target"
+        modalHeading="Schedule Build Job"
         primaryButtonText="Save"
         secondaryButtonText="Cancel"
         onRequestClose={() => setIsModalOpen(false)}
         onRequestSubmit={handleScheduleSave}
       >
         <p style={{ marginBottom: "1rem" }}>
-          Set schedule for target:{" "}
+          Set schedule for ID:{" "}
           <strong>
-            {rows.find((r) => r.id === selectedRowId)?.reportId}
+            {buildData.find((r) => r.id === selectedRowId)?.id}
           </strong>
         </p>
         <DatePicker
@@ -208,4 +200,4 @@ const AutoTargetTable = () => {
   );
 };
 
-export default AutoTargetTable;
+export default BuildStatusTable;
