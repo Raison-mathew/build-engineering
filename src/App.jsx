@@ -56,9 +56,11 @@ function App() {
       <div style={{padding: '2rem'}}>
         <InfoTable headers={scheduleHeaders} rows={scheduleRows}></InfoTable>
          {/* <InfoTable headers={buildStatusHeaders} rows={buildStatusRows}></InfoTable> */}
-        <BuildStatusTable></BuildStatusTable>
-         <AutoTargetTable></AutoTargetTable>
-
+        <div style={{display: "inline-flex", width: "100%"}}>
+          <BuildStatusTable></BuildStatusTable>
+          <AutoTargetTable></AutoTargetTable>
+        </div>
+        
       </div> 
     </>
   )

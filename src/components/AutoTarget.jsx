@@ -68,8 +68,7 @@ const AutoTargetTable = () => {
   };
 
   return (
-    <div className="bx--grid" style={{ maxWidth: "1000px", margin: "auto" }}>
-      <h4>Auto Target - Status: OFF</h4>
+    <div className="bx--grid" style={{ width: "50%", margin: "10px"}}>
 
       <DataTable rows={[]} headers={[]} isSortable={false}>
         {() => (
