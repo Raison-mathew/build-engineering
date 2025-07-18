@@ -62,7 +62,6 @@ function App() {
           <BuildStatusTable></BuildStatusTable>
           <AutoTargetTable></AutoTargetTable>
         </div>
-          <DashboardGrid></DashboardGrid>
           <BottomGrid></BottomGrid>
       </div> 
     </>

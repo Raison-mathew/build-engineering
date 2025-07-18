@@ -17,6 +17,7 @@ import {
 } from "@carbon/react";
 import { Play, Renew, Calendar } from "@carbon/icons-react";
 
+
 const initialRows = [
   {
     id: 1,
@@ -140,21 +141,22 @@ const AutoTargetTable = () => {
                     <TableCell>Ready to Target</TableCell>
                     <TableCell>{row.readyToTarget}</TableCell>
                     <TableCell />
-                    <TableCell>
-                      {row.id === 2 && (
-                        <Button
-                          renderIcon={Renew}
-                          size="sm"
-                          kind="ghost"
-                          iconDescription="Refresh"
-                        >
-                          Refresh
-                        </Button>
-                      )}
-                    </TableCell>
+                    <TableCell/>
                   </TableRow>
                 </React.Fragment>
               ))}
+              <TableRow>
+                <TableCell colSpan={3} />
+                <TableCell>
+                    <Button
+                      renderIcon={Renew}
+                      size="sm"
+                      kind="ghost"
+                      iconDescription="Refresh">
+                      Refresh
+                    </Button>
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         )}

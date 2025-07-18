@@ -7,6 +7,16 @@ const buildIds = ['905', '855'];
 
 const tables = [
   {
+    title: 'Build Basics',
+    hasInput: true,
+    autoStatuses: ['OFF', 'OFF'],
+  },
+  {
+    title: 'Test Record Verification',
+    hasInput: false,
+    autoStatuses: ['OFF', 'OFF'],
+  },
+  {
     title: 'Ifix Enable',
     hasInput: true,
     autoStatuses: ['OFF', 'OFF'],
@@ -30,7 +40,7 @@ const tables = [
 
 const BottomGrid = () => {
   return (
-    <div className="dashboard-grid" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+    <div className="dashboard-grid" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
       {tables.map((table, index) => (
         <div
           key={table.title}
