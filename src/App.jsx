@@ -2,14 +2,16 @@ import './App.css'
 import { Button } from '@carbon/react'
 import AppHeader from './components/AppHeader'
 import InfoTable from './components/InfoTable'
+import AutoTargetTable from './components/AutoTarget';
 
 const scheduleHeaders = [
   { key: "schedule", header: "Schedule" },
   { key: "plan", header: "Plan" },
-  { key: "sprint1", header: "Sprint1" },
-  { key: "sprint2", header: "Sprint2" },
-  { key: "sprint3", header: "Sprint3" },
-  { key: "frt", header: "Final Regression Test" },
+  { key: "initialsetup", header: "Initial Setup" },
+  { key: "sprint1", header: "Sprint 1" },
+  { key: "sprint2", header: "Sprint 2" },
+  { key: "sprint3", header: "Sprint 3" },
+  { key: "frt", header: "Final Regression Test" },
   { key: "gm", header: "GM" },
   { key: "ega", header: "eGA" },
 ];
@@ -19,6 +21,7 @@ const scheduleRows = [
     id: "905",
     schedule: "905.24",
     plan: "WAS9.0.5.24",
+    initialsetup: "10/06/25",
     sprint1: "12/07/25",
     sprint2: "13/07/25",
     sprint3: "14/07/25",
@@ -30,12 +33,43 @@ const scheduleRows = [
     id: "855",
     schedule: "855.28",
     plan: "WAS855.28",
+    initialsetup: "10/06/25",
     sprint1: "12/07/25",
     sprint2: "13/07/25",
     sprint3: "14/07/25",
     frt: "12/07/25",
     gm: "14/07/25",
     ega: "30/07/25",
+  },
+];
+
+const buildStatusHeaders = [
+  { key: "schedule", header: "Schedule" },
+  { key: "last", header: "Last Committed" },
+  { key: "ready", header: "Ready to Commit" },
+  { key: "bvt", header: "BVT Testing" },
+  { key: "manual", header: "Manual" },
+  { key: "auto", header: "Auto" },
+];
+
+const buildStatusRows = [
+  {
+    id: "905status",
+    schedule: "905.24",
+    last: "f5242521.01",
+    ready: "f5242521.02",
+    bvt: "f5242521.03",
+    manual: "commit-905", // custom cell renderer → Button
+    auto: "OFF", // Tag renderer
+  },
+  {
+    id: "855status",
+    schedule: "855.28",
+    last: "f5242521.01",
+    ready: "f5242521.02",
+    bvt: "f5242521.03",
+    manual: "commit-855",
+    auto: "ON",
   },
 ];
 
@@ -48,6 +82,8 @@ function App() {
       
       <div style={{padding: '2rem'}}>
         <InfoTable headers={scheduleHeaders} rows={scheduleRows}></InfoTable>
+         <InfoTable headers={buildStatusHeaders} rows={buildStatusRows}></InfoTable>
+         <AutoTargetTable></AutoTargetTable>
       </div> 
     </>
   )
