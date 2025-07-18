@@ -5,6 +5,8 @@ import InfoTable from './components/InfoTable'
 import AutoTargetTable from './components/AutoTarget';
 import BuildStatusTable from './components/BuildStatusTable';
 import BuildEngineeringDashboard from './components/BuildEngineeringDashboard';
+import DashboardGrid from './components/DashboardGrid';
+import BottomGrid from './components/BottomGrid';
 
 const scheduleHeaders = [
   { key: "schedule", header: "Schedule" },
@@ -56,9 +58,11 @@ function App() {
       <div style={{padding: '2rem'}}>
         <InfoTable headers={scheduleHeaders} rows={scheduleRows}></InfoTable>
          {/* <InfoTable headers={buildStatusHeaders} rows={buildStatusRows}></InfoTable> */}
-        <BuildStatusTable></BuildStatusTable>
-         <AutoTargetTable></AutoTargetTable>
-
+        <div style={{display: "inline-flex", width: "100%"}}>
+          <BuildStatusTable></BuildStatusTable>
+          <AutoTargetTable></AutoTargetTable>
+        </div>
+          <BottomGrid></BottomGrid>
       </div> 
     </>
   )

@@ -72,10 +72,9 @@ const BuildStatusTable = () => {
   };
 
   return (
-    <div className="bx--grid" style={{ maxWidth: "1000px", margin: "auto" }}>
-      <h4>Build Status Table</h4>
+    <div className="bx--grid" style={{ width: "50%", margin: "10px" }}>
 
-      <DataTable rows={[]} headers={[]} isSortable={false}>
+      <DataTable rows={[]} headers={[]} isSortable={false} >
         {() => (
           <Table>
             <TableHead>

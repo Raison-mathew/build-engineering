@@ -14,12 +14,12 @@ const AppHeader = () => {
                 <HeaderMenuItem>
                     Home
                 </HeaderMenuItem>
-                <HeaderMenuItem>
+                {/* <HeaderMenuItem>
                     Notification
                 </HeaderMenuItem>
                 <HeaderMenuItem>
                     Docs
-                </HeaderMenuItem>
+                </HeaderMenuItem> */}
             </HeaderNavigation>
             
         </Header>
