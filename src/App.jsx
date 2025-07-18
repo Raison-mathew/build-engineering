@@ -5,6 +5,8 @@ import InfoTable from './components/InfoTable'
 import AutoTargetTable from './components/AutoTarget';
 import BuildStatusTable from './components/BuildStatusTable';
 import BuildEngineeringDashboard from './components/BuildEngineeringDashboard';
+import DashboardGrid from './components/DashboardGrid';
+import BottomGrid from './components/BottomGrid';
 
 const scheduleHeaders = [
   { key: "schedule", header: "Schedule" },
@@ -60,7 +62,8 @@ function App() {
           <BuildStatusTable></BuildStatusTable>
           <AutoTargetTable></AutoTargetTable>
         </div>
-        
+          <DashboardGrid></DashboardGrid>
+          <BottomGrid></BottomGrid>
       </div> 
     </>
   )
